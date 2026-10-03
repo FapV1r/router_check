@@ -19,7 +19,7 @@ def get_db():
 def create_reading(reading: ReadingCreate, db: Session = Depends(get_db)):
     sensor = db.query(Sensor).filter(Sensor.id == reading.sensor_id).first()
     if not sensor:
-        raise HTTPException(status_code=404, detail="Sensor not found")
+        raise HTTPException(status_code=404, detail="Sensor >>")
 
     db_reading = Reading(sensor_id=reading.sensor_id, value=reading.value)
     db.add(db_reading)
